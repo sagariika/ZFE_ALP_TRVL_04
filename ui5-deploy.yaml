@@ -1,0 +1,26 @@
+# yaml-language-server: $schema=https://sap.github.io/ui5-tooling/schema/ui5.yaml.json
+
+specVersion: "3.1"
+metadata:
+  name: com.ibm.zfealptravel04
+type: application
+builder:
+  resources:
+    excludes:
+      - /test/**
+      - /localService/**
+  customTasks:
+    - name: deploy-to-abap
+      afterTask: generateCachebusterInfo
+      configuration:
+        log: 0
+        target:
+          destination: BTP_HTTP
+          url: http://s4hana2020.themdlabs.com:8001
+        app:
+          name: ZFE_ALP_04
+          description: flight app 04
+          package: $tmp
+          transport: MD1K903778
+        exclude:
+          - /test/
